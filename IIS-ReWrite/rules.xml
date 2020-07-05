@@ -1,6 +1,6 @@
  <rewrite>
             <rules>
-                <rule name="sp.mfg" stopProcessing="true">
+                <rule name="short.url" stopProcessing="true">
                     <match url="[0-9a-zA-Z]{0,20}$" />
                     <action type="Redirect" url="http://localhost:5001/api/URL/{R:0}" appendQueryString="false" />
                     <conditions logicalGrouping="MatchAny" trackAllCaptures="true" />

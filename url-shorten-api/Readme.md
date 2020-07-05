@@ -81,7 +81,9 @@ Create DTO folder >ADD DTO class
 ### Adding Automapper
 
 - Add Nuget Package
+<pre><code>
   AutoMapper.Extensions.Microsoft.DependencyInjection
+   </code></pre>
 - Create a AutoMapperProfile class
 - Add automapper as a service in configure class
 <pre><code>
@@ -110,7 +112,7 @@ Create DTO folder >ADD DTO class
 
 ### Adding cors headers
 
-- Add after UseRoutng is Configure method
+- Add cors after UseRoutng in Configure method in startup file
   <pre><code>
     app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
   </code></pre>
@@ -120,7 +122,7 @@ Create DTO folder >ADD DTO class
 - Nugut Package add
   Microsoft.AspNetCore.Mvc.NewtonsoftJson
 
--Add services
+- Add servicesin startup
 
   <pre><code>
 services.AddControllers().AddNewtonsoftJson(opt =>
