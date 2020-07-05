@@ -54,9 +54,9 @@ Add Microsoft.EntityFrameworkCore.Design
 
 ### Add new migration
 
-    dotnet ef migrations add InitialCreate
+        dotnet ef migrations add InitialCreate
 
-- Note: if ef tools vs the ef design version dont match update ef tools using below cmd in cmd line
+- \* Note: if ef tools vs the ef design version dont match update ef tools using below cmd in cmd line
   dotnet tool update --global dotnet-ef
 
 Migration folder is created with scripts
@@ -84,12 +84,14 @@ Create DTO folder >ADD DTO class
   AutoMapper.Extensions.Microsoft.DependencyInjection
 - Create a AutoMapperProfile class
 - Add automapper as a service in configure class
-  services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); //provide assembly where you willfind automapper profile class
+<pre><code>
+ services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); //provide assembly where you willfind automapper profile class
+ </code></pre>
 
 ### Adding Controller Class
 
 - Add Controller
-- Add ctor with repo, config and mapper
+- Add ctor with repo, config and mapper as below
 
  <pre><code>
 
@@ -108,8 +110,7 @@ Create DTO folder >ADD DTO class
 
 ### Adding cors headers
 
-Add after UseRoutng
-
+- Add after UseRoutng is Configure method
   <pre><code>
     app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
   </code></pre>
