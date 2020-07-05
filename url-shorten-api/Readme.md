@@ -4,7 +4,7 @@
 - c# Extensions (to add classes)
 - Nuget package manager
 
-### Remove HTTPS ffor deve server launchSettings.json
+### Remove HTTPS for dev server in launchSettings.json
 
  <pre><code>
      "applicationUrl": "https://localhost:5001;http://localhost:5000",
@@ -15,9 +15,7 @@
 
 // app.UseHttpsRedirection();
 
-### Adding New Items
-
-##### Folders
+### Adding New Models Folder
 
 Models>create class>URLShort
 
@@ -43,11 +41,13 @@ Microsoft.EntityFrameworkCore.SqlServer
 
 ## Adding Migration
 
+##### Check syntac using
+
 dotnet ef migrations -h
 
 - Note: if you have dotnet run c running you need to stop for migrations
 
-### Throws error for missing Design of EF
+#### If it throws error for missing Design of EF then add belwo nuget
 
 Add Nuget Package
 Add Microsoft.EntityFrameworkCore.Design
@@ -56,8 +56,8 @@ Add Microsoft.EntityFrameworkCore.Design
 
     dotnet ef migrations add InitialCreate
 
-if ef tools vs the design version dont match update ef tools
-dotnet tool update --global dotnet-ef
+- Note: if ef tools vs the ef design version dont match update ef tools using below cmd in cmd line
+  dotnet tool update --global dotnet-ef
 
 Migration folder is created with scripts
 dotnet ef -h
@@ -65,30 +65,33 @@ dotnet ef database -h
 
 ### Update Database
 
-update database, create a database and tables
-dotnet ef database update
+- update database, create a database and tables
+  dotnet ef database update
 
 ### Repository Pattern and DI
 
-Create Interface in Data Folder #IURLRepository
-Create class to implement the interface
-public class URLRepository : IURLRepository
+- Create Interface in Data Folder #IURLRepository
+- Create class to implement the interface
+- public class URLRepository : IURLRepository
+
+### Creating DTO
+
 Create DTO folder >ADD DTO class
 
 ### Adding Automapper
 
-Add Nuget Package
-AutoMapper.Extensions.Microsoft.DependencyInjection
-Create a AutoMapperProfile class
-Add automapper as a service in configure class
-services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); //provide assembly where you willfind automapper profile class
+- Add Nuget Package
+  AutoMapper.Extensions.Microsoft.DependencyInjection
+- Create a AutoMapperProfile class
+- Add automapper as a service in configure class
+  services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); //provide assembly where you willfind automapper profile class
 
 ### Adding Controller Class
 
 - Add Controller
 - Add ctor with repo, config and mapper
 
-       <pre><code>
+ <pre><code>
 
   private readonly IURLRepository \_repo;
   private readonly IConfiguration \_config;
@@ -101,24 +104,26 @@ services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); //provide assem
               this._repo = repo;
 
           }
-       </code></pre>
+  </code></pre>
 
 ### Adding cors headers
 
 Add after UseRoutng
 
   <pre><code>
-app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
+    app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
   </code></pre>
 
 ### Adding Newtonsoft JSON
 
-Adding Microsoft.AspNetCore.Mvc.NewtonsoftJson
-Nugut Package add
-Microsoft.AspNetCore.Mvc.NewtonsoftJson
+- Nugut Package add
+  Microsoft.AspNetCore.Mvc.NewtonsoftJson
 
-Add services
+-Add services
+
+  <pre><code>
 services.AddControllers().AddNewtonsoftJson(opt =>
 {
 opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 }); //replaces system.text.json
+  </code></pre>
